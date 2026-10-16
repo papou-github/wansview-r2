@@ -276,6 +276,7 @@ class Controller:
 
     async def close(self):
         self._closed=True
+        if hasattr(self,'battery'): await self.battery.close()
         await self.stop()
         if self.runner:
             await self.runner.cleanup()

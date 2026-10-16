@@ -9,7 +9,7 @@ from .cloud import Client
 from .controller import Controller
 
 DOMAIN='wansview_r2'
-PLATFORMS=[Platform.CAMERA,Platform.BUTTON,Platform.SWITCH]
+PLATFORMS=[Platform.CAMERA,Platform.BUTTON,Platform.SWITCH,Platform.SENSOR]
 
 async def async_setup_entry(hass,entry):
     connector=aiohttp.TCPConnector(family=socket.AF_INET)
@@ -31,6 +31,10 @@ async def async_setup_entry(hass,entry):
             manager.device=await prepare()
         manager.prepare_account=refresh_account
         await manager.setup()
+        from .battery import BatteryMonitor
+        manager.battery=BatteryMonitor(Client(session),manager._config,manager.did,
+            entry.data['email'],entry.data['password'],manager.notify)
+        manager.battery.start()
     except Exception as error:
         await session.close()
         if isinstance(error,RuntimeError) and str(error).startswith('AJCloud refuse'):

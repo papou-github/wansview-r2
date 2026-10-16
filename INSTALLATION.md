@@ -130,3 +130,20 @@ l’arrêt à la fin de la minute ou en cas d’échec. Actualiser l’image est
 Retirer les deux anciennes cartes du tableau de bord et ajouter la nouvelle
 entité Direct. Pour une carte bouton : choisir Direct, action au toucher
 « Basculer », et laisser l’icône automatique pour afficher Play/Stop.
+
+## Version 0.1.3 — batterie
+
+Envoyer le contenu de l’archive à la racine du dépôt GitHub existant :
+custom_components, README.md, hacs.json, etc. Valider Commit changes.
+Dans HACS : Update information, puis Redownload et redémarrage de HA.
+Ne pas supprimer les caméras configurées.
+
+Chaque appareil reçoit un capteur Batterie (%). La première lecture cloud
+est lancée au chargement, puis toutes les 30 minutes. Aucun réveil caméra
+ni direct n’est demandé par cette lecture. L’attribut measurement_time
+indique la date de mesure enregistrée par le cloud, qui peut être ancienne.
+Le capteur devient indisponible si la lecture cloud échoue ; le direct reste
+indépendant. Le capteur utilise le nom Battery en anglais et Batterie en français.
+
+Vérification initiale : CAMSAM doit correspondre aux 100 % mesurés lors du
+diagnostic. Les autres valeurs observées étaient 48, 42 et 70 %.

@@ -1,14 +1,15 @@
 # Wansview R2 for Home Assistant
 
 Experimental Home Assistant integration for Wansview / Galayou R2 Pro battery-powered cameras.
-Version 0.1.2 adds HACS repository support while keeping the same video functionality as 0.1.1.
+Version 0.1.3 adds cloud battery monitoring.
 
 - On-demand snapshots, cached in memory.
 - A single Play/Stop control for live video, with automatic shutdown after one minute.
 - Dashboard previews do not wake the camera.
+- Battery percentage, with cloud polling every 30 minutes and a measurement timestamp.
 - One camera per integration entry; multiple entries are supported.
 
-Connects through Wansview Cloud / AJCloud and Internet relay servers. No local RTSP stream is provided. Automatic relay discovery is not yet implemented. Battery status, PIR events and audio are not yet supported. This is an independent project, not affiliated with the manufacturer.
+Connects through Wansview Cloud / AJCloud and Internet relay servers. No local RTSP stream is provided. Automatic relay discovery is not yet implemented. PIR events and audio are not yet supported. This is an independent project, not affiliated with the manufacturer.
 
 ## Install with HACS
 
@@ -35,10 +36,26 @@ See [PUBLICATION.md](PUBLICATION.md) for repository publishing instructions (Fre
 
 ## Validation status
 
-The single Play/Stop control was added in version 0.1.1. Offline protocol and FFmpeg conversion tests are included.
+Snapshots and video were tested on CAMSAM with the first Home Assistant version of this integration. The single Play/Stop control was added in version 0.1.1. Offline protocol and FFmpeg conversion tests are included.
 
 HACS installation and updates should be checked on your own setup. This project is installed as a custom HACS repository; it is not listed in the default HACS catalogue.
 
 ## Credits
 
 Created by Papou. Wansview, Galayou and Home Assistant names and logos belong to their respective owners.
+
+## Battery monitoring
+
+The Battery sensor reads cached cloud metadata on startup and every 30 minutes.
+It never calls the wakeup endpoint or opens a camera session. The value may
+therefore be older than the last cloud check. Its `measurement_time` attribute
+is the camera measurement timestamp, not the time Home Assistant fetched it.
+Cloud failures make the battery sensor unavailable; video controls remain independent.
+The `batteryAlarm` protocol value is not interpreted as a low-battery alert.
+
+## Updating to 0.1.3
+
+Upload this repository content to GitHub, keeping `custom_components` at the
+root. In HACS, update information and redownload (or install release v0.1.3),
+then restart Home Assistant. Keep existing configuration entries and entities.
+The icon is included under `custom_components/wansview_r2/brand/icon.png`.

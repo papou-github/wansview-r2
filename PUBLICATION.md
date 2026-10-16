@@ -15,7 +15,7 @@ Responsable : @papou-github. L’étape de configuration est déjà effectuée.
    `README.md` et `custom_components` doivent être directement à la racine,
    sans dossier parent supplémentaire. Inclure également les autres fichiers.
 4. Définir une description et les topics `home-assistant`, `hacs`, `wansview`.
-5. Créer une release GitHub `v0.1.2` sur ce contenu. Pas d’archive jointe
+5. Créer une release GitHub `v0.1.3` sur ce contenu. Pas d’archive jointe
    nécessaire : HACS télécharge les fichiers du dépôt.
 6. Ajouter son URL dans HACS → ⋮ → Dépôts personnalisés → Intégration.
 

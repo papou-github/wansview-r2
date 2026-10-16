@@ -27,5 +27,12 @@
       "already_configured": "Cette caméra est déjà configurée.",
       "no_camera": "Aucune caméra R2 compatible trouvée."
     }
+  },
+  "entity": {
+    "sensor": {
+      "battery": {
+        "name": "Batterie"
+      }
+    }
   }
 }
