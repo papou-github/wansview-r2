@@ -1,48 +1,44 @@
-# Wansview R2 pour Home Assistant
+# Wansview R2 for Home Assistant
 
-Intégration expérimentale pour caméras Wansview / Galayou R2 Pro sur batterie.
-Version 0.1.2 : préparation HACS, fonctionnement vidéo identique à 0.1.1.
+Experimental Home Assistant integration for Wansview / Galayou R2 Pro battery-powered cameras.
+Version 0.1.2 adds HACS repository support while keeping the same video functionality as 0.1.1.
 
-- Image à la demande, gardée en mémoire.
-- Une commande Direct Play/Stop ; arrêt automatique après une minute.
-- Les aperçus ne réveillent pas la caméra.
-- Une caméra par entrée ; plusieurs entrées possibles.
+- On-demand snapshots, cached in memory.
+- A single Play/Stop control for live video, with automatic shutdown after one minute.
+- Dashboard previews do not wake the camera.
+- One camera per integration entry; multiple entries are supported.
 
-Connexion via Wansview Cloud / AJCloud et relais Internet. Aucun RTSP local
-n’est fourni. La découverte automatique des relais reste à développer.
-Pas encore de batterie, PIR ni audio. Projet indépendant du fabricant.
+Connects through Wansview Cloud / AJCloud and Internet relay servers. No local RTSP stream is provided. Automatic relay discovery is not yet implemented. Battery status, PIR events and audio are not yet supported. This is an independent project, not affiliated with the manufacturer.
 
-## Installer avec HACS
+## Install with HACS
 
-1. Dans HACS, ouvrir le menu ⋮ puis Dépôts personnalisés.
-2. Ajouter `https://github.com/papou-github/wansview-r2`, catégorie Intégration.
-3. Rechercher Wansview R2 et télécharger, puis redémarrer Home Assistant.
-4. Ajouter Wansview R2 dans Paramètres → Appareils et services.
-5. Saisir le compte Wansview Cloud puis sélectionner la caméra.
+1. In HACS, open the three-dot menu and select **Custom repositories**.
+2. Add `https://github.com/papou-github/wansview-r2` and select **Integration** as the category.
+3. Find **Wansview R2**, download it, then restart Home Assistant.
+4. Go to **Settings → Devices & services → Add integration** and select **Wansview R2**.
+5. Enter your Wansview Cloud credentials and select your camera.
 
-Pour une installation manuelle existante, conserver l’entrée et le dossier
-`custom_components/wansview_r2` : HACS doit gérer ce même domaine. Après
-installation via HACS, redémarrer et vérifier que le compte et les entités
-sont conservés. Ne pas créer une seconde copie de l’intégration.
+If you already installed the integration manually, keep your existing configuration entry and the `custom_components/wansview_r2` directory. HACS should manage this same integration. After downloading through HACS, restart Home Assistant and check that your account and entities are still present. Do not create a second copy of the integration.
 
-## Utiliser
+## Usage
 
-Actualiser l’image demande une capture puis ferme la session. Direct démarre
-une session de 60 secondes au maximum, négociation incluse ; un deuxième
-appui l’arrête. Le bouton affiche Play à l’arrêt et Stop lorsque la session
-est demandée. Une capture d’image seule n’active pas ce bouton.
+**Refresh image** (currently labelled **Actualiser l’image**) requests a snapshot and then closes the session. The image remains cached until Home Assistant restarts or a new snapshot is captured.
 
-Les identifiants sont conservés dans la configuration de Home Assistant.
-Les diagnostics de l’intégration excluent identifiants, clés et images.
-Ne pas publier de captures réseau ni de journaux contenant des secrets.
+**Live** (currently labelled **Direct**) starts a session lasting up to 60 seconds, including connection time. Press it again to stop early. The control displays Play when stopped and Stop while connecting or streaming. Taking a snapshot alone does not activate this control.
 
-Voir [INSTALLATION.md](INSTALLATION.md) pour les détails et le dépannage.
-Voir [PUBLICATION.md](PUBLICATION.md) pour préparer le dépôt GitHub.
+To view live video, enable **Direct**, then open the camera entity. Do not enable stream preloading or use a permanently live dashboard preview.
 
-## État des vérifications
+Your credentials are stored in Home Assistant's configuration. Integration diagnostics exclude credentials, camera keys and images. Do not publish network captures or logs containing secrets.
 
-Image et vidéo validées sur CAMSAM avec la première version HA. Play/Stop
-ajouté en 0.1.1. Tests hors ligne du protocole et conversion FFmpeg inclus.
-Installation et mise à jour par HACS à vérifier après publication GitHub.
-Cette archive seule n’est pas un dépôt à ajouter dans HACS et le projet
-n’est pas référencé dans son catalogue par défaut.
+See [INSTALLATION.md](INSTALLATION.md) for detailed installation and troubleshooting instructions (French).
+See [PUBLICATION.md](PUBLICATION.md) for repository publishing instructions (French).
+
+## Validation status
+
+Snapshots and video were tested on CAMSAM with the first Home Assistant version of this integration. The single Play/Stop control was added in version 0.1.1. Offline protocol and FFmpeg conversion tests are included.
+
+HACS installation and updates should be checked on your own setup. This project is installed as a custom HACS repository; it is not listed in the default HACS catalogue.
+
+## Credits
+
+Created by Papou. Wansview, Galayou and Home Assistant names and logos belong to their respective owners.
