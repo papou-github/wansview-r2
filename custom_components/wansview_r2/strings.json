@@ -1,0 +1,31 @@
+{
+  "title": "Wansview R2 (expérimental)",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Compte Wansview Cloud",
+        "description": "Connexion au compte cloud. Aucune caméra ne sera réveillée pendant cet ajout.",
+        "data": {
+          "email": "Adresse e-mail",
+          "password": "Mot de passe"
+        }
+      },
+      "camera": {
+        "title": "Choisir une caméra",
+        "description": "Commencer par CAMSAM. Chaque caméra se configure séparément.",
+        "data": {
+          "camera": "Caméra"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossible de joindre le cloud. Vérifier DNS, accès Internet et routage VPN.",
+      "invalid_auth": "Connexion au compte refusée.",
+      "unexpected_response": "Réponse cloud non reconnue."
+    },
+    "abort": {
+      "already_configured": "Cette caméra est déjà configurée.",
+      "no_camera": "Aucune caméra R2 compatible trouvée."
+    }
+  }
+}

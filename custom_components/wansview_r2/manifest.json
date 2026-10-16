@@ -1,0 +1,20 @@
+{
+  "domain": "wansview_r2",
+  "name": "Wansview R2 (expérimental)",
+  "version": "0.1.2",
+  "config_flow": true,
+  "documentation": "https://github.com/papou-github/wansview-r2",
+  "dependencies": [
+    "ffmpeg",
+    "stream"
+  ],
+  "iot_class": "cloud_polling",
+  "requirements": [
+    "PyNaCl>=1.5.0,<2.0.0"
+  ],
+  "codeowners": [
+    "@papou-github"
+  ],
+  "integration_type": "device",
+  "issue_tracker": "https://github.com/papou-github/wansview-r2/issues"
+}
