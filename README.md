@@ -35,7 +35,7 @@ See [PUBLICATION.md](PUBLICATION.md) for repository publishing instructions (Fre
 
 ## Validation status
 
-Snapshots and video were tested on CAMSAM with the first Home Assistant version of this integration. The single Play/Stop control was added in version 0.1.1. Offline protocol and FFmpeg conversion tests are included.
+The single Play/Stop control was added in version 0.1.1. Offline protocol and FFmpeg conversion tests are included.
 
 HACS installation and updates should be checked on your own setup. This project is installed as a custom HACS repository; it is not listed in the default HACS catalogue.
 
